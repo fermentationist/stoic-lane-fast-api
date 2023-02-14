@@ -1,0 +1,6 @@
+init = """
+  CREATE TABLE IF NOT EXISTS redirects(
+    id BIGINT PRIMARY KEY NOT NULL,
+    url VARCHAR(2048) NOT NULL UNIQUE
+  );
+"""
