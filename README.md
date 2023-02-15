@@ -2,8 +2,10 @@
 A URL shortener built in Python, using FastAPI. Made by [Dennis Hodges](https://dennis-hodges.com).
 
 ## Install
-* `cd` into project root
-* Type `python -m pip install`
+1. `cd` into project root
+2. Create virtual environment with `python -m venv .`
+3. To activate virtual environment, type `source bin/activate`
+4. To install dependencies, type `python -m pip install -r requirements.txt`
 
 ## Run
 * To start server, run `uvicorn src.main:app`, from project root. 

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, status
 from fastapi.responses import RedirectResponse, JSONResponse
-# import services.shorten_url as shorten_url_service
+from fastapi.staticfiles import StaticFiles
 from .services import shorten_url as shorten_url_service
 from pydantic import BaseModel
 import random
@@ -14,12 +14,11 @@ class ShortenURLRequest(BaseModel):
 
 
 @app.post("/api/shorten-url")
-async def shorten(request: ShortenURLRequest):
+async def shorten_url(request: ShortenURLRequest):
   return shorten_url_service.shorten_url(request.url)
 
 @app.get("/api/test")
 async def test_endpoint(test: str | None = None):
-  print("q in controller:", test)
   return {
     "status": "ok",
     "randomTestNumber": random_int,
@@ -28,6 +27,9 @@ async def test_endpoint(test: str | None = None):
 
 @app.get("/{redirect_id}")
 async def redirect(redirect_id: str, response: JSONResponse):
+  print("redirect_id:", redirect_id)
+  if not redirect_id:
+    return {"answer": 66}
   result = shorten_url_service.get_full_url(redirect_id)
   if (result):
     response.status_code = status.HTTP_301_MOVED_PERMANENTLY
@@ -45,4 +47,7 @@ async def redirect(redirect_id: str, response: JSONResponse):
 
 @app.get("/")
 async def root():
+  print("correct route")
   return {"answer": 42}
+
+app.mount("/", StaticFiles(directory="static"), name="static")
