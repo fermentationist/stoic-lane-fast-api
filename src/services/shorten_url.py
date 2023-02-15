@@ -8,11 +8,11 @@ CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def shorten_url(url: str):
   existing_url = get_existing_url(url)
   if (existing_url):
-    return { "status": "ok", "shortenedUrl": f"{HOST_URL}/{existing_url}"}
+    return { "status": "ok", "shortenedURL": f"{HOST_URL}/{existing_url}"}
   timestamp = round(time.time() * 1000)
   uid = int_to_encoded_string(timestamp)
   add_redirect_to_db(url, timestamp)
-  return { "status": "ok", "shortenedUrl": f"{HOST_URL}/{uid}"}
+  return { "status": "ok", "shortenedURL": f"{HOST_URL}/{uid}"}
 
 def int_to_encoded_string(num: int):
   output = []

@@ -4,7 +4,7 @@ from .init_tables import init
 class DB():
   def __init__(self, db, filename):
     self.db = db
-    self.connection = db.connect(filename)
+    self.connection = db.connect(filename, check_same_thread=False)
     print("DB initialized")
     self.query(init)
 
