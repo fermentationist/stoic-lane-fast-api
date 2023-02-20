@@ -44,7 +44,6 @@ async def redirect(redirect_id: str, response: JSONResponse):
       }
     }
 
-
 @app.get("/")
 async def root():
   print("correct route")
