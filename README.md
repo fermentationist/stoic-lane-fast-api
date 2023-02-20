@@ -1,4 +1,4 @@
-# stoic-lane-fast-api
+# url-py
 A URL shortener built in Python, using FastAPI. Made by [Dennis Hodges](https://dennis-hodges.com).
 
 ## Install
